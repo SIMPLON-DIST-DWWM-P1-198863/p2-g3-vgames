@@ -1,0 +1,144 @@
+/* ==========================================================================
+   L'Arcadex — Variables de la charte graphique
+   Ta prochaine partie commence ici.
+
+   À importer en premier dans ton CSS :  @import "variables.css";
+   Polices (dans le <head>) :
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600;700&family=Saira:wght@400;700&display=swap">
+   ========================================================================== */
+
+:root {
+  /* ---------- Couleurs : surfaces ---------- */
+  --nuit-900: #000321;   /* Fond de page */
+  --nuit-800: #0A1030;   /* Cartes, header, panneaux */
+  --nuit-700: #16203F;   /* Survol, champs de saisie, menus */
+
+  /* ---------- Couleurs : acier (ninja) ---------- */
+  --acier-500: #34495F;  /* Décoratif uniquement : ombre des titres (pas de texte !) */
+  --acier-400: #5C7491;  /* Bordures, séparateurs, contours de champs */
+
+  /* ---------- Couleurs : or et flamme ---------- */
+  --or-400: #F5AC3E;     /* Couleur signature : titres, liens, bouton principal */
+  --flamme-500: #F29400; /* Survol / actif, badges « Nouveau » */
+
+  /* ---------- Couleurs : texte ---------- */
+  --encre: #F3EEE4;       /* Texte principal */
+  --encre-douce: #8FA3BC; /* Texte secondaire, métadonnées, placeholders */
+  --on-or: #1A0F00;       /* Texte posé sur l'or ou la flamme */
+
+  /* ---------- Couleurs : états (toujours avec un mot ou une icône) ---------- */
+  --succes: #5FD08F;
+  --danger: #FF7A6B;
+
+  /* ---------- Typographie ---------- */
+  --font-display: "Chakra Petch", "Arial Black", sans-serif; /* Titres, en MAJUSCULES */
+  --font-sans: "Saira", system-ui, sans-serif;                /* Texte, boutons */
+
+  --text-display: 700 64px/60px var(--font-display);
+  --text-h1: 700 40px/44px var(--font-display);
+  --text-h2: 700 28px/32px var(--font-display);
+  --text-h3: 600 20px/24px var(--font-display);
+  --text-body: 400 16px/24px var(--font-sans);
+  --text-label: 700 13px/18px var(--font-sans); /* + letter-spacing: var(--tracking-label) */
+  --text-small: 400 13px/18px var(--font-sans);
+
+  --tracking-titre: 0.02em;
+  --tracking-label: 0.12em;
+
+  /* ---------- Espacements (grille de 4 px) ---------- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-10: 40px;
+  --space-16: 64px;
+
+  /* ---------- Arrondis (marque anguleuse) ---------- */
+  --radius-sm: 2px;  /* Badges, champs */
+  --radius-md: 6px;  /* Boutons, cartes */
+  --radius-lg: 12px; /* Grands panneaux, modale */
+
+  /* ---------- Ombres ---------- */
+  --ombre-titre: -4px 6px 0 #34495F; /* Ombre décalée des titres, comme le logo */
+  --lueur-or: 0 0 0 2px #F5AC3E;     /* Focus clavier, survol des cartes */
+}
+
+/* ==========================================================================
+   Bases recommandées
+   ========================================================================== */
+
+body {
+  margin: 0;
+  background: var(--nuit-900);
+  color: var(--encre);
+  font: var(--text-body);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--or-400);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-titre);
+}
+h1 { font: var(--text-h1); text-shadow: var(--ombre-titre); }
+h2 { font: var(--text-h2); }
+h3 { font: var(--text-h3); }
+
+a { color: var(--or-400); }
+a:hover { color: var(--flamme-500); }
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--lueur-or);
+}
+
+/* ---------- Boutons ---------- */
+.btn {
+  font: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  padding: var(--space-2) var(--space-6);
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+.btn--principal { background: var(--or-400); color: var(--on-or); }
+.btn--principal:hover { background: var(--flamme-500); }
+.btn--secondaire { background: transparent; color: var(--or-400); border-color: var(--or-400); }
+.btn--secondaire:hover { color: var(--flamme-500); border-color: var(--flamme-500); }
+.btn--discret { background: transparent; color: var(--encre); }
+.btn--discret:hover { background: var(--nuit-700); }
+
+/* ---------- Carte de jeu ---------- */
+.carte-jeu {
+  background: var(--nuit-800);
+  border: 1px solid var(--acier-400);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.carte-jeu:hover { background: var(--nuit-700); box-shadow: var(--lueur-or); border-color: transparent; }
+.carte-jeu__jaquette { aspect-ratio: 3 / 4; width: 100%; object-fit: cover; background: var(--nuit-700); display: block; }
+.carte-jeu__contenu { padding: var(--space-4); }
+.carte-jeu__titre { font: var(--text-h3); margin: 0 0 var(--space-2); }
+.carte-jeu__meta { font: var(--text-small); color: var(--encre-douce); margin: 0; }
+
+.badge {
+  font: var(--text-label);
+  font-size: 11px;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  background: var(--flamme-500);
+  color: var(--on-or);
+  padding: 2px var(--space-2);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Grille du catalogue ---------- */
+.grille-jeux {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+@media (min-width: 900px) {
+  .grille-jeux { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-6); }
+}
