@@ -1,0 +1,42 @@
+.game-list-page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+.game-list-page__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+
+.game-list-page__title {
+  margin: 0;
+  font-size: 2rem;
+  color: #e8ecf4;
+}
+
+.game-list-page__count {
+  margin: 0;
+  color: #9aa4b8;
+}
+
+.game-list-page__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  justify-items: center;
+}
+
+.game-list-page__message {
+  padding: 40px 0;
+  text-align: center;
+  color: #9aa4b8;
+}
+
+.game-list-page__message--error {
+  color: #e57373;
+}
