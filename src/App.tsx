@@ -1,4 +1,4 @@
-import ListJeux from '../src/page/GameListPage.tsx'
+import ListJeux from "../src/page/GameListPage.tsx";
 
 function App() {
   return (
@@ -7,7 +7,7 @@ function App() {
       <p>Ta prochaine partie commence ici.</p>
       <ListJeux />
     </main>
-  )
+  );
 }
 
-export default App
+export default App;
