@@ -40,3 +40,7 @@
 .game-list-page__message--error {
   color: #e57373;
 }
+
+.game-list-page__sort select {
+  background-color: #0b1020;
+}
