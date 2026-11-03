@@ -74,15 +74,7 @@ body {
   font: var(--text-body);
 }
 
-h1, h2, h3 {
-  font-family: var(--font-display);
-  color: var(--or-400);
-  text-transform: uppercase;
-  letter-spacing: var(--tracking-titre);
-}
-h1 { font: var(--text-h1); text-shadow: var(--ombre-titre); }
-h2 { font: var(--text-h2); }
-h3 { font: var(--text-h3); }
+
 
 a { color: var(--or-400); }
 a:hover { color: var(--flamme-500); }
@@ -141,4 +133,100 @@ a:hover { color: var(--flamme-500); }
 }
 @media (min-width: 900px) {
   .grille-jeux { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-6); }
+}
+
+
+
+/* ---------- Header ---------- */
+.for-header-align {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 4rem;
+  margin-top: 1rem;
+}
+
+.for-header-logo {
+  margin-left: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-bar-input {
+  width: 100%;
+  padding: 10px 200px 10px 42px;
+  font-size: 0.95rem;
+  color: #1f2937;
+  background-color: #f3f4f6;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  outline: none;
+  transition: all 0.25s ease-in-out;
+}
+
+.nav-bar-input::placeholder {
+  color: #9ca3af;
+  opacity: 1;
+}
+
+.nav-bar-input:hover {
+  background-color: #e5e7eb;
+}
+
+.nav-bar-input:focus {
+  background-color: #ffffff;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+}
+
+.for-header-mid {
+  display: flex;
+  gap: 5rem;
+  font-size: 2rem;
+  margin-left: 5rem;
+}
+
+.for-header-end {
+  display: flex;
+  gap: 5rem;
+  font-size: 2rem;
+  margin-right: 2rem;
+}
+
+.image-header {
+  display: flex;
+  width: 4rem;
+}
+
+.github-header {
+  display: flex;
+  width: 4rem;
+}
+
+
+/* ---------- Footer ---------- */
+.for-footer-align {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 10rem;
+}
+
+.for-footer-logo {
+  margin-left: 2rem;
+}
+
+.for-footer-mid {
+  display: flex;
+  gap: 5rem;
+  font-size: 2rem;
+  margin-left: 5rem;
+}
+
+.for-footer-end {
+  display: flex;
+  gap: 5rem;
+  font-size: 2rem;
+  margin-right: 2rem;
 }
