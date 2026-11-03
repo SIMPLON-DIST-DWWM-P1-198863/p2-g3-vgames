@@ -1,12 +1,18 @@
+import { useEffect, useState } from "react";
 import ListJeux from "../src/page/GameListPage.tsx";
+import EnTete from "./components/Header.tsx";
+import EnBas from "./components/Footer.tsx";
 
 function App() {
   return (
+    <>
+
+    <EnTete />
     <main>
-      <h1>L'Arcadex</h1>
-      <p>Ta prochaine partie commence ici.</p>
       <ListJeux />
     </main>
+    <EnBas />
+    </>
   );
 }
 
