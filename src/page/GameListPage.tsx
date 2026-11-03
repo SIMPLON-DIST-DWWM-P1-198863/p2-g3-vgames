@@ -3,11 +3,17 @@ import { getJeux } from "../services/jeuxService";
 import type { Jeu } from "../types/jeu";
 import GameCard from "../components/GameCard";
 import "../styles/GameListPage.css";
+import Pagination from "../components/Pagination";
+import { paginer } from "../utils/pagination";
+import { useSearchParams } from "react-router-dom";
+
+  const JEUX_PAR_PAGE = 12;
 
 export default function GameListPage() {
   const [jeux, setJeux] = useState<Jeu[]>([]);
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState<string | null>(null);
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
     getJeux()
@@ -20,7 +26,14 @@ export default function GameListPage() {
   console.log("Carte cliquée :", jeu.title);
 };
 
+  const pageDemandee = Math.floor(Number(searchParams.get("page"))) || 1;
+  const totalPagesMax = Math.max(Math.ceil(jeux.length / JEUX_PAR_PAGE), 1);
+  const pageCourante = Math.min(Math.max(pageDemandee, 1), totalPagesMax);
+  
+  const {elements, totalPages } = paginer(jeux, pageCourante, JEUX_PAR_PAGE);
+
   return (
+   
     <main className="game-list-page">
       <header className="game-list-page__header">
         <h1 className="game-list-page__title">Liste des jeux</h1>
@@ -40,12 +53,17 @@ export default function GameListPage() {
       )}
 
       {!chargement && !erreur && jeux.length > 0 && (
+         <>
         <section className="game-list-page__grid" aria-label="Catalogue des jeux">
-          {jeux.map((jeu) => (
+          {elements.map((jeu) => (
             <GameCard key={jeu.id} jeu={jeu} onClick={handleCardClick} />
           ))}
         </section>
-      )}
-    </main>
+
+        <Pagination pageCourante={pageCourante} totalPages={totalPages} />
+    
+    </>
+     )}
+     </main>
   );
 }
