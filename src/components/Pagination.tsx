@@ -1,3 +1,4 @@
+import "../styles/pagination.css";
 import { useSearchParams } from "react-router-dom";
 
 interface PaginationProps {
@@ -19,25 +20,28 @@ export default function Pagination({
 
   if (totalPages <= 1) return null;
 
-  return (
-    <nav className="Pagination">
-      <button
-        onClick={() => changerPage(pageCourante - 1)}
-        disabled={pageCourante === 1}
-      >
-        Précédent
-      </button>
+return (
+  <nav className="pagination" aria-label="Pagination">
+    <button
+      type="button"
+      className="pagination__bouton"
+      onClick={() => changerPage(pageCourante - 1)}
+      disabled={pageCourante === 1}
+    >
+      Précédent
+    </button>
 
-      <span>
-        Page {pageCourante} / {totalPages}
-      </span>
+    <span className="pagination__info">
+      Page {pageCourante} / {totalPages}
+    </span>
 
-      <button
-        onClick={() => changerPage(pageCourante + 1)}
-        disabled={pageCourante === totalPages}
-      >
-        Suivant
-      </button>
-    </nav>
-  );
-}
+    <button
+      type="button"
+      className="pagination__bouton"
+      onClick={() => changerPage(pageCourante + 1)}
+      disabled={pageCourante === totalPages}
+    >
+      Suivant
+    </button>
+  </nav>
+)};
