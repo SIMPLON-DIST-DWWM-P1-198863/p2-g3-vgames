@@ -1,19 +1,22 @@
 import { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { getJeux } from "../services/jeuxService";
+import { trierJeux, type CritereTri } from "../services/triService";
 import type { Jeu } from "../types/jeu";
 import GameCard from "../components/GameCard";
 import "../styles/GameListPage.css";
 import Pagination from "../components/Pagination";
 import { paginer } from "../utils/pagination";
-import { useSearchParams } from "react-router-dom";
+import "../styles/GameListPage.css";
 
-  const JEUX_PAR_PAGE = 12;
+const JEUX_PAR_PAGE = 12;
 
 export default function GameListPage() {
   const [jeux, setJeux] = useState<Jeu[]>([]);
   const [chargement, setChargement] = useState(true);
   const [erreur, setErreur] = useState<string | null>(null);
-  const [searchParams] = useSearchParams();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const critere = (searchParams.get("tri") as CritereTri) || "titre";
 
   useEffect(() => {
     getJeux()
@@ -27,28 +30,37 @@ export default function GameListPage() {
   };
 
   const changerTri = (nouveauCritere: CritereTri) => {
-    setSearchParams({ tri: nouveauCritere });
+    setSearchParams((prev) => {
+      const params = new URLSearchParams(prev);
+      params.set("tri", nouveauCritere);
+      params.set("page", "1");
+      return params;
+    });
   };
+
   const jeuxTries = trierJeux(jeux, critere);
 
   const pageDemandee = Math.floor(Number(searchParams.get("page"))) || 1;
   const totalPagesMax = Math.max(Math.ceil(jeux.length / JEUX_PAR_PAGE), 1);
   const pageCourante = Math.min(Math.max(pageDemandee, 1), totalPagesMax);
-  
-  const {elements, totalPages } = paginer(jeux, pageCourante, JEUX_PAR_PAGE);
 
+  const { elements, totalPages } = paginer(
+    jeuxTries,
+    pageCourante,
+    JEUX_PAR_PAGE,
+  );
   return (
-   
     <main className="game-list-page">
       <header className="game-list-pageheader">
         <h1 className="game-list-pagetitle">Liste des jeux</h1>
+
         {!chargement && !erreur && (
-          <p className="game-list-page__count">
+          <p className="game-list-pagecount">
             {jeux.length} {jeux.length > 1 ? "jeux" : "jeu"}
           </p>
         )}
 
-        <label className="game-list-page__sort">
+        <label className="game-list-pagesort">
           Trier par :{" "}
           <select
             value={critere}
@@ -62,31 +74,33 @@ export default function GameListPage() {
       </header>
 
       {chargement && (
-        <p className="game-list-page__message">Chargement des jeux…</p>
+        <p className="game-list-pagemessage">Chargement des jeux…</p>
       )}
 
       {erreur && (
-        <p className="game-list-page__message game-list-page__message--error">
+        <p className="game-list-pagemessage game-list-pagemessage--error">
           {erreur}
         </p>
       )}
 
       {!chargement && !erreur && jeux.length === 0 && (
-        <p className="game-list-page__message">Aucun jeu pour le moment.</p>
+        <p className="game-list-pagemessage">Aucun jeu pour le moment.</p>
       )}
 
       {!chargement && !erreur && jeux.length > 0 && (
-         <>
-        <section className="game-list-page__grid" aria-label="Catalogue des jeux">
-          {elements.map((jeu) => (
-            <GameCard key={jeu.id} jeu={jeu} onClick={handleCardClick} />
-          ))}
-        </section>
+        <>
+          <section
+            className="game-list-page__grid"
+            aria-label="Catalogue des jeux"
+          >
+            {elements.map((jeu) => (
+              <GameCard key={jeu.id} jeu={jeu} onClick={handleCardClick} />
+            ))}
+          </section>
 
-        <Pagination pageCourante={pageCourante} totalPages={totalPages} />
-    
-    </>
-     )}
-     </main>
+          <Pagination pageCourante={pageCourante} totalPages={totalPages} />
+        </>
+      )}
+    </main>
   );
 }

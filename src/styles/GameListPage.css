@@ -41,6 +41,7 @@
   color: #e57373;
 }
 
-.game-list-page__sort select {
-  background-color: #0b1020;
+.game-list-pagesort select {
+  background-color: #fff;
+  color: #111;
 }

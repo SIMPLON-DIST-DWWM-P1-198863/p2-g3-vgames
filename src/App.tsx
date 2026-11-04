@@ -6,12 +6,11 @@ import EnBas from "./components/Footer.tsx";
 function App() {
   return (
     <>
-
-    <EnTete />
-    <main>
-      <ListJeux />
-    </main>
-    <EnBas />
+      <EnTete />
+      <main>
+        <ListJeux />
+      </main>
+      <EnBas />
     </>
   );
 }
