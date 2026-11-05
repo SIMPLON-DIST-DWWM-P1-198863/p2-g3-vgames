@@ -1,0 +1,87 @@
+@import url("https://fonts.googleapis.com/css2?family=Russo+One&display=swap");
+
+.footer {
+  margin-top: 3rem;
+  padding: 1.5rem 2rem 1rem;
+  background-color: #000026;
+  border-top: 1px solid #f5a623;
+  color: #ffffff;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.footer-logo {
+  width: 64px;
+  height: auto;
+}
+
+.footer-name {
+  font-family: "Russo One", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  background: linear-gradient(180deg, #fff1c2 0%, #ffc44d 50%, #e87a12 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(1px 1px 0 #3b1d05) drop-shadow(0 2px 3px rgba(0, 0, 0, 0.8));
+}
+
+.footer-text,
+.footer-link {
+  font-size: 0.95rem;
+  color: #ffffff;
+}
+
+.footer-nav {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-link {
+  text-decoration: none;
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: #f5a623;
+  text-decoration: underline;
+}
+
+.footer-copyright {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .footer {
+    padding-inline: 1rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-brand {
+    flex-direction: column;
+  }
+
+  .footer-nav {
+    gap: 1.5rem;
+  }
+}

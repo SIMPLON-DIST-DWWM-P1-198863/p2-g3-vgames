@@ -1,37 +1,30 @@
-import { useState } from "react";
+import "../styles/footer.css";
 
-
-export default function EnBas() {
-    return(
-        <>
-        <div className="for-footer-align">
-            <div className="for-header-logo">
-                <img 
-                className="image-header"
-                src="./logo.png" alt="logo-header" />
-                Gaming
-            </div>
-
-             <div className="for-footer-mid">
-                <p>
-                    test
-                </p>
-
-                <p>
-                    test
-                </p>
-            </div>
-
-             <div className="for-footer-end">
-                <p>
-                    test
-                </p>
-
-                <p>
-                    test2
-                </p>
-            </div>
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <div className="footer-content">
+        <div className="footer-brand">
+          <img className="footer-logo" src="/logo.png" alt="" />
+          <div>
+            <p className="footer-name">L’Arcadex</p>
+            <p className="footer-text">Ta prochaine partie commence ici.</p>
+          </div>
         </div>
-        </>
-    )
+
+        <nav className="footer-nav" aria-label="Navigation du pied de page">
+          <a className="footer-link" href="/">
+            Catalogue
+          </a>
+          <a className="footer-link" href="#">
+            Retour en haut
+          </a>
+        </nav>
+      </div>
+
+      <p className="footer-text footer-copyright">
+        © {new Date().getFullYear()} L’Arcadex
+      </p>
+    </footer>
+  );
 }
