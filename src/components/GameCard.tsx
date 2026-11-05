@@ -12,20 +12,24 @@ export default function GameCard({ jeu, onClick }: GameCardProps) {
   const prix =
     jeu.price === 0
       ? "Gratuit"
-      : jeu.price.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
+      : jeu.price.toLocaleString("fr-FR", {
+          style: "currency",
+          currency: "EUR",
+        });
 
   return (
     <article
-  className="game-card"
-  onClick={() => onClick?.(jeu)}
-  onKeyDown={(e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onClick?.(jeu);
-    }
-  }}
-  role="button"
-  tabIndex={0}>
+      className="game-card"
+      onClick={() => onClick?.(jeu)}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          onClick?.(jeu);
+        }
+      }}
+      role="button"
+      tabIndex={0}
+    >
       <div className="game-card__image-wrapper">
         <img
           className="game-card__image"
@@ -33,7 +37,6 @@ export default function GameCard({ jeu, onClick }: GameCardProps) {
           alt={`Jaquette de ${jeu.title}`}
           loading="lazy"
         />
-        <span className="game-card__rating">{jeu.rating}</span>
       </div>
 
       <div className="game-card__content">
@@ -42,6 +45,8 @@ export default function GameCard({ jeu, onClick }: GameCardProps) {
         <p className="game-card__meta">
           {jeu.genre} · {annee}
         </p>
+
+        <span className="game-card__rating">{jeu.rating}</span>
 
         <ul className="game-card__platforms">
           {jeu.platforms.map((plateforme) => (

@@ -18,6 +18,7 @@ export default function GameListPage() {
   const [erreur, setErreur] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const critere = (searchParams.get("tri") as CritereTri) || "titre";
+  const searchQuery = searchParams.get("search")?.toLowerCase() || "";
 
   useEffect(() => {
     getJeux()
@@ -39,7 +40,13 @@ export default function GameListPage() {
     });
   };
 
-  const jeuxTries = trierJeux(jeux, critere);
+  const jeuxFiltres = jeux.filter(
+    (jeu) =>
+      jeu.title.toLowerCase().includes(searchQuery) ||
+      jeu.genre.toLowerCase().includes(searchQuery),
+  );
+
+  const jeuxTries = trierJeux(jeuxFiltres, critere);
 
   const pageDemandee = Math.floor(Number(searchParams.get("page"))) || 1;
   const totalPagesMax = Math.max(Math.ceil(jeux.length / JEUX_PAR_PAGE), 1);
