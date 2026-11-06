@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getJeux } from "../services/jeuxService";
-import { trierJeux, type CritereTri } from "../services/triService";
+import { type CritereTri } from "../services/triService";
 import type { Jeu } from "../types/jeu";
 import GameCard from "../components/GameCard";
 import "../styles/GameListPage.css";
@@ -9,6 +9,8 @@ import Pagination from "../components/Pagination";
 import TriJeux from "../components/TriJeux";
 import { paginer } from "../utils/pagination";
 import "../styles/GameListPage.css";
+import FiltrePlateformes from "../components/FiltrePlateformes";
+import { useJeuxFiltres } from "../hooks/useJeuxFiltres";
 
 const JEUX_PAR_PAGE = 12;
 
@@ -49,7 +51,10 @@ export default function GameListPage() {
   const jeuxTries = trierJeux(jeuxFiltres, critere);
 
   const pageDemandee = Math.floor(Number(searchParams.get("page"))) || 1;
-  const totalPagesMax = Math.max(Math.ceil(jeux.length / JEUX_PAR_PAGE), 1);
+  const totalPagesMax = Math.max(
+    Math.ceil(jeuxTries.length / JEUX_PAR_PAGE),
+    1,
+  );
   const pageCourante = Math.min(Math.max(pageDemandee, 1), totalPagesMax);
 
   const { elements, totalPages } = paginer(
@@ -63,10 +68,15 @@ export default function GameListPage() {
         <h1 className="game-list-page__title">Liste des jeux</h1>
 
         {!chargement && !erreur && (
-          <p className="game-list-page__count">
-            {jeux.length} {jeux.length > 1 ? "jeux" : "jeu"}
+          <p className="game-list-pagecount">
+            {jeuxTries.length} {jeuxTries.length > 1 ? "jeux" : "jeu"}
           </p>
         )}
+        <FiltrePlateformes
+          plateformes={plateformesDisponibles}
+          cochees={plateformesCochees}
+          onToggle={basculerPlateforme}
+        />
 
         <TriJeux critere={critere} onChangeTri={changerTri} />
       </header>
