@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { getJeux } from "../services/jeuxService";
-import { trierJeux, type CritereTri } from "../services/triService";
+import { type CritereTri } from "../services/triService";
 import type { Jeu } from "../types/jeu";
 import GameCard from "../components/GameCard";
 import "../styles/GameListPage.css";
 import Pagination from "../components/Pagination";
 import { paginer } from "../utils/pagination";
 import "../styles/GameListPage.css";
+import FiltrePlateformes from "../components/FiltrePlateformes";
+import { useJeuxFiltres } from "../hooks/useJeuxFiltres";
 
 const JEUX_PAR_PAGE = 12;
 
@@ -17,6 +19,18 @@ export default function GameListPage() {
   const [erreur, setErreur] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const critere = (searchParams.get("tri") as CritereTri) || "titre";
+  const [plateformesCochees, setPlateformesCochees] = useState<string[]>([]);
+  const plateformesDisponibles = [
+    ...new Set(jeux.flatMap((jeu) => jeu.platforms)),
+  ].sort();
+  const jeuxTries = useJeuxFiltres(jeux, "", plateformesCochees, critere);
+  const basculerPlateforme = (plateforme: string) => {
+    setPlateformesCochees((precedentes) =>
+      precedentes.includes(plateforme)
+        ? precedentes.filter((p) => p !== plateforme)
+        : [...precedentes, plateforme],
+    );
+  };
 
   useEffect(() => {
     getJeux()
@@ -38,10 +52,11 @@ export default function GameListPage() {
     });
   };
 
-  const jeuxTries = trierJeux(jeux, critere);
-
   const pageDemandee = Math.floor(Number(searchParams.get("page"))) || 1;
-  const totalPagesMax = Math.max(Math.ceil(jeux.length / JEUX_PAR_PAGE), 1);
+  const totalPagesMax = Math.max(
+    Math.ceil(jeuxTries.length / JEUX_PAR_PAGE),
+    1,
+  );
   const pageCourante = Math.min(Math.max(pageDemandee, 1), totalPagesMax);
 
   const { elements, totalPages } = paginer(
@@ -56,7 +71,7 @@ export default function GameListPage() {
 
         {!chargement && !erreur && (
           <p className="game-list-pagecount">
-            {jeux.length} {jeux.length > 1 ? "jeux" : "jeu"}
+            {jeuxTries.length} {jeuxTries.length > 1 ? "jeux" : "jeu"}
           </p>
         )}
 
@@ -71,6 +86,11 @@ export default function GameListPage() {
             <option value="prix">Prix</option>
           </select>
         </label>
+        <FiltrePlateformes
+          plateformes={plateformesDisponibles}
+          cochees={plateformesCochees}
+          onToggle={basculerPlateforme}
+        />
       </header>
 
       {chargement && (
