@@ -20,18 +20,7 @@ export default function GameListPage() {
   const [erreur, setErreur] = useState<string | null>(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const critere = (searchParams.get("tri") as CritereTri) || "titre";
-  const [plateformesCochees, setPlateformesCochees] = useState<string[]>([]);
-  const plateformesDisponibles = [
-    ...new Set(jeux.flatMap((jeu) => jeu.platforms)),
-  ].sort();
-  const jeuxTries = useJeuxFiltres(jeux, "", plateformesCochees, critere);
-  const basculerPlateforme = (plateforme: string) => {
-    setPlateformesCochees((precedentes) =>
-      precedentes.includes(plateforme)
-        ? precedentes.filter((p) => p !== plateforme)
-        : [...precedentes, plateforme],
-    );
-  };
+  const searchQuery = searchParams.get("search")?.toLowerCase() || "";
 
   useEffect(() => {
     getJeux()
@@ -52,6 +41,14 @@ export default function GameListPage() {
       return params;
     });
   };
+
+  const jeuxFiltres = jeux.filter(
+    (jeu) =>
+      jeu.title.toLowerCase().includes(searchQuery) ||
+      jeu.genre.toLowerCase().includes(searchQuery),
+  );
+
+  const jeuxTries = trierJeux(jeuxFiltres, critere);
 
   const pageDemandee = Math.floor(Number(searchParams.get("page"))) || 1;
   const totalPagesMax = Math.max(

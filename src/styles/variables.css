@@ -9,30 +9,31 @@
 
 :root {
   /* ---------- Couleurs : surfaces ---------- */
-  --nuit-900: #000321;   /* Fond de page */
-  --nuit-800: #0A1030;   /* Cartes, header, panneaux */
-  --nuit-700: #16203F;   /* Survol, champs de saisie, menus */
+  --nuit-900: #000321; /* Fond de page */
+  --nuit-800: #0a1030; /* Cartes, header, panneaux */
+  --nuit-700: #16203f; /* Survol, champs de saisie, menus */
 
   /* ---------- Couleurs : acier (ninja) ---------- */
-  --acier-500: #34495F;  /* Décoratif uniquement : ombre des titres (pas de texte !) */
-  --acier-400: #5C7491;  /* Bordures, séparateurs, contours de champs */
+  --acier-500: #34495f; /* Décoratif uniquement : ombre des titres (pas de texte !) */
+  --acier-400: #5c7491; /* Bordures, séparateurs, contours de champs */
 
   /* ---------- Couleurs : or et flamme ---------- */
-  --or-400: #F5AC3E;     /* Couleur signature : titres, liens, bouton principal */
-  --flamme-500: #F29400; /* Survol / actif, badges « Nouveau » */
+  --or-400: #f5ac3e; /* Couleur signature : titres, liens, bouton principal */
+  --flamme-500: #f29400; /* Survol / actif, badges « Nouveau » */
 
   /* ---------- Couleurs : texte ---------- */
-  --encre: #F3EEE4;       /* Texte principal */
-  --encre-douce: #8FA3BC; /* Texte secondaire, métadonnées, placeholders */
-  --on-or: #1A0F00;       /* Texte posé sur l'or ou la flamme */
+  --encre: #f3eee4; /* Texte principal */
+  --encre-douce: #8fa3bc; /* Texte secondaire, métadonnées, placeholders */
+  --on-or: #1a0f00; /* Texte posé sur l'or ou la flamme */
 
   /* ---------- Couleurs : états (toujours avec un mot ou une icône) ---------- */
-  --succes: #5FD08F;
-  --danger: #FF7A6B;
+  --succes: #5fd08f;
+  --danger: #ff7a6b;
 
   /* ---------- Typographie ---------- */
-  --font-display: "Chakra Petch", "Arial Black", sans-serif; /* Titres, en MAJUSCULES */
-  --font-sans: "Saira", system-ui, sans-serif;                /* Texte, boutons */
+  --font-display:
+    "Chakra Petch", "Arial Black", sans-serif; /* Titres, en MAJUSCULES */
+  --font-sans: "Saira", system-ui, sans-serif; /* Texte, boutons */
 
   --text-display: 700 64px/60px var(--font-display);
   --text-h1: 700 40px/44px var(--font-display);
@@ -54,13 +55,13 @@
   --space-16: 64px;
 
   /* ---------- Arrondis (marque anguleuse) ---------- */
-  --radius-sm: 2px;  /* Badges, champs */
-  --radius-md: 6px;  /* Boutons, cartes */
+  --radius-sm: 2px; /* Badges, champs */
+  --radius-md: 6px; /* Boutons, cartes */
   --radius-lg: 12px; /* Grands panneaux, modale */
 
   /* ---------- Ombres ---------- */
-  --ombre-titre: -4px 6px 0 #34495F; /* Ombre décalée des titres, comme le logo */
-  --lueur-or: 0 0 0 2px #F5AC3E;     /* Focus clavier, survol des cartes */
+  --ombre-titre: -4px 6px 0 #34495f; /* Ombre décalée des titres, comme le logo */
+  --lueur-or: 0 0 0 2px #f5ac3e; /* Focus clavier, survol des cartes */
 }
 
 /* ==========================================================================
@@ -74,10 +75,12 @@ body {
   font: var(--text-body);
 }
 
-
-
-a { color: var(--or-400); }
-a:hover { color: var(--flamme-500); }
+a {
+  color: var(--or-400);
+}
+a:hover {
+  color: var(--flamme-500);
+}
 
 :focus-visible {
   outline: none;
@@ -94,12 +97,29 @@ a:hover { color: var(--flamme-500); }
   border: 2px solid transparent;
   cursor: pointer;
 }
-.btn--principal { background: var(--or-400); color: var(--on-or); }
-.btn--principal:hover { background: var(--flamme-500); }
-.btn--secondaire { background: transparent; color: var(--or-400); border-color: var(--or-400); }
-.btn--secondaire:hover { color: var(--flamme-500); border-color: var(--flamme-500); }
-.btn--discret { background: transparent; color: var(--encre); }
-.btn--discret:hover { background: var(--nuit-700); }
+.btn--principal {
+  background: var(--or-400);
+  color: var(--on-or);
+}
+.btn--principal:hover {
+  background: var(--flamme-500);
+}
+.btn--secondaire {
+  background: transparent;
+  color: var(--or-400);
+  border-color: var(--or-400);
+}
+.btn--secondaire:hover {
+  color: var(--flamme-500);
+  border-color: var(--flamme-500);
+}
+.btn--discret {
+  background: transparent;
+  color: var(--encre);
+}
+.btn--discret:hover {
+  background: var(--nuit-700);
+}
 
 /* ---------- Carte de jeu ---------- */
 .carte-jeu {
@@ -108,11 +128,30 @@ a:hover { color: var(--flamme-500); }
   border-radius: var(--radius-md);
   overflow: hidden;
 }
-.carte-jeu:hover { background: var(--nuit-700); box-shadow: var(--lueur-or); border-color: transparent; }
-.carte-jeu__jaquette { aspect-ratio: 3 / 4; width: 100%; object-fit: cover; background: var(--nuit-700); display: block; }
-.carte-jeu__contenu { padding: var(--space-4); }
-.carte-jeu__titre { font: var(--text-h3); margin: 0 0 var(--space-2); }
-.carte-jeu__meta { font: var(--text-small); color: var(--encre-douce); margin: 0; }
+.carte-jeu:hover {
+  background: var(--nuit-700);
+  box-shadow: var(--lueur-or);
+  border-color: transparent;
+}
+.carte-jeu__jaquette {
+  aspect-ratio: 3 / 4;
+  width: 100%;
+  object-fit: cover;
+  background: var(--nuit-700);
+  display: block;
+}
+.carte-jeu__contenu {
+  padding: var(--space-4);
+}
+.carte-jeu__titre {
+  font: var(--text-h3);
+  margin: 0 0 var(--space-2);
+}
+.carte-jeu__meta {
+  font: var(--text-small);
+  color: var(--encre-douce);
+  margin: 0;
+}
 
 .badge {
   font: var(--text-label);
@@ -132,10 +171,11 @@ a:hover { color: var(--flamme-500); }
   gap: var(--space-4);
 }
 @media (min-width: 900px) {
-  .grille-jeux { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: var(--space-6); }
+  .grille-jeux {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-6);
+  }
 }
-
-
 
 /* ---------- Header ---------- */
 .for-header-align {
@@ -151,33 +191,6 @@ a:hover { color: var(--flamme-500); }
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.nav-bar-input {
-  width: 100%;
-  padding: 10px 200px 10px 42px;
-  font-size: 0.95rem;
-  color: #1f2937;
-  background-color: #f3f4f6;
-  border: 1px solid transparent;
-  border-radius: 9999px;
-  outline: none;
-  transition: all 0.25s ease-in-out;
-}
-
-.nav-bar-input::placeholder {
-  color: #9ca3af;
-  opacity: 1;
-}
-
-.nav-bar-input:hover {
-  background-color: #e5e7eb;
-}
-
-.nav-bar-input:focus {
-  background-color: #ffffff;
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
 }
 
 .for-header-mid {
@@ -203,7 +216,6 @@ a:hover { color: var(--flamme-500); }
   display: flex;
   width: 4rem;
 }
-
 
 /* ---------- Footer ---------- */
 .for-footer-align {
