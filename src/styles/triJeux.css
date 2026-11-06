@@ -1,0 +1,17 @@
+.tri-jeux {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--encre-douce);
+  font: var(--text-small);
+}
+
+.tri-jeux__select {
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--acier-400);
+  border-radius: var(--radius-sm);
+  background: var(--nuit-700);
+  color: var(--encre);
+  font: var(--text-small);
+  cursor: pointer;
+}
