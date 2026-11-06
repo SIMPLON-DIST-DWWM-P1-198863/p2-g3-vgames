@@ -1,0 +1,53 @@
+.platform-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0;
+  margin: 8px 0 16px;
+  border: 0;
+  min-width: 0;
+}
+
+.platform-filter__legend {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.platform-filter__item {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 21px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+  background: rgba(50, 46, 46, 0.05);
+  color: #c8cbe0;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition:
+    background 0.15s,
+    border-color 0.15s,
+    color 0.15s;
+}
+
+.platform-filter__item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+.platform-filter__item input {
+  margin-right: 5px;
+}
+
+.platform-filter__item:focus-within {
+  outline: 2px solid #6c6cff;
+  outline-offset: 2px;
+}
+
+.platform-filter__item--active {
+  background: rgb(25, 25, 127);
+  border-color: #6c6cff;
+  color: #fff;
+  font-weight: 500;
+}
