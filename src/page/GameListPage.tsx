@@ -29,9 +29,6 @@ export default function GameListPage() {
       .finally(() => setChargement(false));
   }, []);
 
-  const handleCardClick = (jeu: Jeu) => {
-    console.log("Carte cliquée :", jeu.title);
-  };
 
   const changerTri = (nouveauCritere: CritereTri) => {
     setSearchParams((prev) => {
@@ -102,7 +99,7 @@ export default function GameListPage() {
             aria-label="Catalogue des jeux"
           >
             {elements.map((jeu) => (
-              <GameCard key={jeu.id} jeu={jeu} onClick={handleCardClick} />
+              <GameCard key={jeu.id} jeu={jeu} />
             ))}
           </section>
 
