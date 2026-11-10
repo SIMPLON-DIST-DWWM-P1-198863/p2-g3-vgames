@@ -3,10 +3,9 @@ import "../styles/gameCard.css";
 
 interface GameCardProps {
   jeu: Jeu;
-  onClick?: (jeu: Jeu) => void;
 }
 
-export default function GameCard({ jeu, onClick }: GameCardProps) {
+export default function GameCard({ jeu }: GameCardProps) {
   const annee = new Date(jeu.release_date).getFullYear();
 
   const prix =
@@ -15,17 +14,7 @@ export default function GameCard({ jeu, onClick }: GameCardProps) {
       : jeu.price.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
 
   return (
-    <article
-  className="game-card"
-  onClick={() => onClick?.(jeu)}
-  onKeyDown={(e) => {
-    if (e.key === "Enter" || e.key === " ") {
-      e.preventDefault();
-      onClick?.(jeu);
-    }
-  }}
-  role="button"
-  tabIndex={0}>
+    <article className="game-card">
       <div className="game-card__image-wrapper">
         <img
           className="game-card__image"
