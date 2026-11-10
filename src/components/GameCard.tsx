@@ -11,7 +11,10 @@ export default function GameCard({ jeu }: GameCardProps) {
   const prix =
     jeu.price === 0
       ? "Gratuit"
-      : jeu.price.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
+      : jeu.price.toLocaleString("fr-FR", {
+          style: "currency",
+          currency: "EUR",
+        });
 
   return (
     <article className="game-card">
@@ -22,7 +25,6 @@ export default function GameCard({ jeu }: GameCardProps) {
           alt={`Jaquette de ${jeu.title}`}
           loading="lazy"
         />
-        <span className="game-card__rating">{jeu.rating}</span>
       </div>
 
       <div className="game-card__content">
@@ -31,6 +33,8 @@ export default function GameCard({ jeu }: GameCardProps) {
         <p className="game-card__meta">
           {jeu.genre} · {annee}
         </p>
+
+        <span className="game-card__rating">{jeu.rating}</span>
 
         <ul className="game-card__platforms">
           {jeu.platforms.map((plateforme) => (
