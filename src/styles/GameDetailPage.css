@@ -1,0 +1,17 @@
+.fiche-jeu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
+
+.fiche-jeu img {
+  width: 100%;
+  max-width: 350px;
+}
+
+@media (min-width: 768px) {
+  .fiche-jeu {
+    flex-direction: row;
+  }
+}
