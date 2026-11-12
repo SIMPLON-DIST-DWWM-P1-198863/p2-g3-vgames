@@ -1,4 +1,5 @@
 .search-bar-container {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -6,8 +7,15 @@
   margin-top: 2rem;
 }
 
-.nav-bar-input {
+.search-wrapper {
+  position: relative;
   width: 90%;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.nav-bar-input {
+  width: 100%;
   padding: 10px 40px 10px 42px;
   font-size: 0.95rem;
   color: #1f2937;
@@ -31,18 +39,4 @@
   background-color: #ffffff;
   border-color: #3b82f6;
   box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-@media (min-width: 768px) {
-  .nav-bar-input {
-    width: 60%;
-    padding: 10px 100px 10px 42px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .nav-bar-input {
-    width: 40%;
-    padding: 10px 200px 10px 42px;
-  }
 }

@@ -1,18 +1,24 @@
 import type { Jeu } from "../types/jeu";
+import "../styles/ListSuggestions.css";
 
 type Props = {
   recherche: string;
-  jeux: Jeu[];
+  suggestions: Jeu[];
+  indexActif: number;
 };
-export default function ListSuggestions({ recherche, jeux }: Props) {
-  const suggestions = jeux
-    .filter((jeu) => jeu.title.toLowerCase().includes(recherche.toLowerCase()))
-    .slice(0, 6);
 
+export default function ListSuggestions({
+  recherche,
+  suggestions,
+  indexActif,
+}: Props) {
+  if (!recherche) return null;
   return (
     <ul>
-      {suggestions.map((jeu) => (
-        <li key={jeu.id}>{jeu.title}</li>
+      {suggestions.map((jeu, index) => (
+        <li key={jeu.id} className={index === indexActif ? "actif" : ""}>
+          {jeu.title}
+        </li>
       ))}
     </ul>
   );
