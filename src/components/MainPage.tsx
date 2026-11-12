@@ -9,6 +9,7 @@ export default function MainPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const searchQuery = searchParams.get("search") || "";
   const [indexActif, setIndexActif] = useState(-1);
+  const [listeOuverte, setListeOuverte] = useState(true);
 
   const [jeux, setJeux] = useState<Jeu[]>([]);
   useEffect(() => {
@@ -62,13 +63,17 @@ export default function MainPage() {
           value={searchQuery}
           onChange={handleSearchChange}
           onKeyDown={handleKeyDown}
+          onBlur={() => setListeOuverte(false)}
+          onFocus={() => setListeOuverte(true)}
         />
 
-        <ListSuggestions
-          recherche={searchQuery}
-          suggestions={suggestions}
-          indexActif={indexActif}
-        />
+        {listeOuverte && (
+          <ListSuggestions
+            recherche={searchQuery}
+            suggestions={suggestions}
+            indexActif={indexActif}
+          />
+        )}
       </div>
     </div>
   );
