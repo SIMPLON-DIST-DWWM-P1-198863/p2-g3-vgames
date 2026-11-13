@@ -1,4 +1,6 @@
+import { Link } from "react-router-dom";
 import type { Jeu } from "../types/jeu";
+import { slugify } from "../services/getJeuParSlug";
 import "../styles/gameCard.css";
 
 interface GameCardProps {
@@ -18,34 +20,36 @@ export default function GameCard({ jeu }: GameCardProps) {
 
   return (
     <article className="game-card">
-      <div className="game-card__image-wrapper">
-        <img
-          className="game-card__image"
-          src={jeu.image}
-          alt={`Jaquette de ${jeu.title}`}
-          loading="lazy"
-        />
-      </div>
+      <Link to={`/jeu/${slugify(jeu.title)}`} className="game-card__lien">
+        <div className="game-card__image-wrapper">
+          <img
+            className="game-card__image"
+            src={jeu.image}
+            alt={`Jaquette de ${jeu.title}`}
+            loading="lazy"
+          />
+        </div>
 
-      <div className="game-card__content">
-        <h3 className="game-card__title">{jeu.title}</h3>
+        <div className="game-card__content">
+          <h3 className="game-card__title">{jeu.title}</h3>
 
-        <p className="game-card__meta">
-          {jeu.genre} · {annee}
-        </p>
+          <p className="game-card__meta">
+            {jeu.genre} · {annee}
+          </p>
 
-        <span className="game-card__rating">{jeu.rating}</span>
+          <span className="game-card__rating">{jeu.rating}</span>
 
-        <ul className="game-card__platforms">
-          {jeu.platforms.map((plateforme) => (
-            <li key={plateforme} className="game-card__platform">
-              {plateforme}
-            </li>
-          ))}
-        </ul>
+          <ul className="game-card__platforms">
+            {jeu.platforms.map((plateforme) => (
+              <li key={plateforme} className="game-card__platform">
+                {plateforme}
+              </li>
+            ))}
+          </ul>
 
-        <p className="game-card__price">{prix}</p>
-      </div>
+          <p className="game-card__price">{prix}</p>
+        </div>
+      </Link>
     </article>
   );
 }

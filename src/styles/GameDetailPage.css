@@ -1,8 +1,13 @@
 .fiche-jeu {
   display: flex;
   flex-direction: column;
+  flex-wrap: wrap;
   gap: 20px;
   padding: 20px;
+}
+
+.fiche-jeu__retour {
+  flex-basis: 100%;
 }
 
 .fiche-jeu img {
