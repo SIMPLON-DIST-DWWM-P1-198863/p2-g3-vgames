@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import ListJeux from "../src/page/GameListPage.tsx";
+import { Routes, Route } from "react-router-dom";
+import ListJeux from "./page/GameListPage.tsx";
+import GameDetailPage from "./page/GameDetailPage.tsx";
 import EnTete from "./components/Header.tsx";
 import EnBas from "./components/Footer.tsx";
 import MainPage from "./components/MainPage.tsx";
@@ -9,8 +11,18 @@ function App() {
     <>
       <EnTete />
       <main>
-        <MainPage />
-        <ListJeux />
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <>
+                <MainPage />
+                <ListJeux />
+              </>
+            }
+          />
+          <Route path="/jeu/:slug" element={<GameDetailPage />} />
+        </Routes>
       </main>
       <EnBas />
     </>
